@@ -84,7 +84,7 @@
             transform: rotate(-15deg); opacity: 0.8;
         }
 
-        #youtube-player-container { display: none; }
+        #youtube-player-container { position: absolute; left: -9999px; }
     </style>
 </head>
 <body>
@@ -98,7 +98,7 @@
         <h1>Autos n.º 13052021-2026</h1>
         <p>Ação de Renovação de Vínculo, Afeto e Parceria</p>
         <p style="font-size: 0.9em; color: #666; margin-top: 30px;">
-            A requerente é intimada a analisar e aceitar os termos estabelecidos para a emissão do certificado de embarque para o próximo quinquênio.
+            A requerente é intimada a analisar e aceitar os termos estabelecidos para a liberação do certificado para o próximo quinquênio.
         </p>
         <button class="btn-formal" onclick="startExperience()">Abrir Processo</button>
     </section>
@@ -107,7 +107,7 @@
     <section id="screen2" class="screen hidden">
         <h2>Cláusula I: Logística e Desbravamento</h2>
         <div class="clausula-box">
-            <p>A requerente compromete-se a manter a constância nas viagens e a aproveitar cada momento juntos, seja nas rotas já conhecidas entre Dourados e Campo Grande, seja descobrindo novos horizontes.</p>
+            <p>A requerente compromete-se a manter a constância nas viagens e a aproveitar cada momento juntos, seja nas rotas conhecidas, seja descobrindo novos horizontes.</p>
         </div>
         <button class="btn-formal" onclick="nextScreen(3)">Li e Aceito</button>
     </section>
@@ -116,7 +116,7 @@
     <section id="screen3" class="screen hidden">
         <h2>Cláusula II: Do Foro Gastronômico</h2>
         <div class="clausula-box">
-            <p>Fica estabelecido o dever de manter e aprimorar os rolês gastronômicos oficiais da união. Incluem-se nesta cláusula a busca incessante por novos cafés, a apreciação de boas pizzas e a obrigatoriedade moral do churrasco perfeito.</p>
+            <p>Fica estabelecido o dever de manter e aprimorar os rolês gastronômicos oficiais. Incluem-se nesta cláusula a busca incessante por novos cafés, a apreciação de boa culinária italiana e a obrigatoriedade moral do churrasco perfeito.</p>
         </div>
         <button class="btn-formal" onclick="nextScreen(4)">Li e Aceito</button>
     </section>
@@ -125,7 +125,7 @@
     <section id="screen4" class="screen hidden">
         <h2>Cláusula III: Do Cotidiano e Aconchego</h2>
         <div class="clausula-box">
-            <p>Fica acordada a preservação inegociável do nosso microcosmo particular: a emissão frequente de podcasts no WhatsApp para relatar o dia, a manutenção do nosso humor duvidoso e a sagrada tranquilidade das nossas noites caseiras.</p>
+            <p>Fica acordada a preservação inegociável do nosso microcosmo particular: a emissão frequente de podcasts no WhatsApp, a manutenção do nosso humor duvidoso e a tranquilidade das nossas noites caseiras.</p>
         </div>
         <button class="btn-formal" onclick="nextScreen(5)">Li e Aceito</button>
     </section>
@@ -145,25 +145,26 @@
             <div class="ticket-header">
                 <div>
                     <div style="font-size: 0.7em; letter-spacing: 1px;">BOARDING PASS</div>
-                    <div style="font-size: 1.2em; font-weight: bold;">RENOVAÇÃO VITALÍCIA</div>
+                    <div style="font-size: 1.2em; font-weight: bold;">RENOVAÇÃO CASUAL</div>
                 </div>
                 <div style="font-size: 1.5em;">✈️</div>
             </div>
             <div class="ticket-body">
                 <div class="photo-placeholder"></div>
                 <p class="formal-text" style="margin:0;">PASSAGEIRA PRINCIPAL</p>
-                <p style="font-size: 1.2em; margin-top: 5px; font-weight: bold; color: var(--vinho);">MARIA EDUARDA</p>
+                <p style="font-size: 1.2em; margin-top: 5px; font-weight: bold; color: var(--vinho);">MARIA CAMARGO</p>
                 
-                <p><strong>DE:</strong> 13/05/2021 (O Início)</p>
-                <p><strong>PARA:</strong> O Casamento & Além</p>
+                <p><strong>DE:</strong> 13/05/2021</p>
+                <p><strong>PARA:</strong> ... </p>
                 
                 <div style="background: #f1f1f1; padding: 10px; margin-top: 15px; border-radius: 4px; font-size: 0.85em;">
                     <strong>TERMOS ACEITOS:</strong>
                     <ul style="margin: 5px 0 0 15px; padding: 0;">
                         <li>Viagens e Parceria Contínua</li>
-                        <li>Churrasco, Pizza & Café</li>
+                        <li>Churrasco, Doces & Café</li>
                         <li>Podcasts via WhatsApp</li>
                         <li>Intercessão de São José</li>
+                        <li>Carinho Incondicional</li>
                     </ul>
                 </div>
                 <div class="carimbo">DEFERIDO</div>
@@ -184,12 +185,12 @@
             player = new YT.Player('youtube-player-container', {
                 height: '0',
                 width: '0',
-                videoId: 'gAnS9u_S65M', // ID do vídeo: Linha do Equador - Djavan
+                videoId: 'FRl8vu0f6do', // ID do vídeo: Linha do Equador - Djavan
                 playerVars: {
                     'autoplay': 0, // Inicia pausado, o navegador bloqueia autoplay sem clique
                     'controls': 0,
                     'loop': 1,
-                    'playlist': 'gAnS9u_S65M' // Necessário para o loop funcionar
+                    'playlist': 'FRl8vu0f6do' // Necessário para o loop funcionar
                 }
             });
         }
