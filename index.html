@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processo de Renovação 13.05</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --vinho: #4A0E0E;
+            --creme: #FDFBF7;
+            --dourado: #C5A059;
+            --texto: #2C3E50;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--creme);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--texto);
+            overflow-x: hidden;
+        }
+
+        /* Container de Música (Escondido) */
+        #music-container { display: none; }
+
+        /* Telas */
+        .screen {
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 20px; text-align: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .hidden { display: none; }
+
+        /* Tipografia */
+        h1, h2 { font-family: 'Cinzel', serif; color: var(--vinho); }
+        .formal-text { font-size: 0.9em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+
+        /* Botões */
+        .btn-formal {
+            background: var(--vinho); color: white;
+            padding: 15px 30px; border: none;
+            font-family: 'Cinzel', serif; cursor: pointer;
+            transition: 0.3s; border-radius: 2px;
+            margin-top: 20px;
+        }
+        .btn-formal:hover { background: var(--dourado); }
+
+        /* Cláusulas */
+        .clause-card {
+            background: white; border: 1px solid #ddd;
+            padding: 20px; margin: 10px; width: 100%; max-width: 400px;
+            cursor: pointer; transition: 0.3s;
+        }
+        .clause-card.selected { border: 2px solid var(--dourado); background: #fffdf5; }
+
+        /* Estilo do Ticket Final */
+        #ticket {
+            background: white; width: 350px; padding: 0;
+            border: 2px solid var(--vinho); position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .ticket-header { background: var(--vinho); color: white; padding: 15px; }
+        .ticket-body { padding: 20px; text-align: left; border-bottom: 2px dashed #ccc; }
+        .ticket-footer { padding: 15px; font-family: 'Cinzel'; font-size: 0.8em; }
+        .photo-placeholder {
+            width: 100px; height: 100px; border-radius: 50%;
+            background: #eee; margin: 0 auto 15px;
+            background-image: url('foto.jpg'); /* Substitua aqui */
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <section id="screen1" class="screen">
+        <p class="formal-text">Comarca de Dourados - MS / Campo Grande - MS</p>
+        <h1>Autos n.º 13052021-2026</h1>
+        <p>Ação de Renovação de Afeto e Companheirismo</p>
+        <button class="btn-formal" onclick="startExperience()">Abrir Processo</button>
+    </section>
+
+    <section id="screen2" class="screen hidden">
+        <h2>Cláusula I: Logística e Expansão</h2>
+        <p>Como vamos carimbar nosso passaporte nos próximos anos?</p>
+        <div class="clause-card" onclick="selectOption(1, 'Santa Catarina & Praia')">
+            <strong>Pé na areia:</strong> Priorizar o sal do mar e o descanso em SC.
+        </div>
+        <div class="clause-card" onclick="selectOption(1, 'Novas Estradas de Moto')">
+            <strong>Vento no Rosto:</strong> Explorar novas rotas e destinos surpresas.
+        </div>
+        <button class="btn-formal" onclick="nextScreen(3)">Próxima Cláusula</button>
+    </section>
+
+    <section id="screen3" class="screen hidden">
+        <h2>Cláusula II: Do Cotidiano</h2>
+        <p>Quais aditivos não podem faltar na nossa rotina?</p>
+        <div class="clause-card" onclick="selectOption(2, 'Churrasco & Café')">
+            <strong>Gastronomia:</strong> Reação de Maillard e grãos selecionados.
+        </div>
+        <div class="clause-card" onclick="selectOption(2, 'Podcasts de WhatsApp')">
+            <strong>Comunicação:</strong> Áudios de 10 min e podcasts exclusivos.
+        </div>
+        <div class="clause-card" onclick="selectOption(2, 'Humor e Noites Caseiras')">
+            <strong>Aconchego:</strong> Humor duvidoso e filmes até dormir.
+        </div>
+        <button class="btn-formal" onclick="nextScreen(4)">Finalizar Veredito</button>
+    </section>
+
+    <section id="screen4" class="screen hidden">
+        <div id="ticket">
+            <div class="ticket-header">
+                <div style="font-size: 0.7em;">BOARDING PASS / RENOVAÇÃO</div>
+                <div style="font-size: 1.2em;">PASSAGEIRA: MARIA EDUARDA</div>
+            </div>
+            <div class="ticket-body">
+                <div class="photo-placeholder"></div>
+                <p><strong>DE:</strong> DOURADOS/MS (2021)</p>
+                <p><strong>PARA:</strong> PARA SEMPRE (2026+)</p>
+                <p><strong>DESTINO:</strong> <span id="res1">-</span></p>
+                <p><strong>ESTILO DE VIDA:</strong> <span id="res2">-</span></p>
+                <p><strong>INTERCESSÃO:</strong> SÃO JOSÉ</p>
+                <p style="font-style: italic; font-size: 0.8em; margin-top: 10px;">
+                    "Sentença: Renovada por tempo indeterminado com esperança no sacramento."
+                </p>
+            </div>
+            <div class="ticket-footer">
+                V.R.V & M.E.B.C - 5 ANOS
+            </div>
+        </div>
+        <button class="btn-formal" onclick="downloadTicket()">Salvar Recordação</button>
+        <p style="font-size: 0.7em; margin-top: 15px;">Ao som de: Linha do Equador - Djavan</p>
+    </section>
+
+    <div id="music-container">
+        <iframe id="youtube-player" width="1" height="1" src="https://www.youtube.com/embed/gAnS9u_S65M?enablejsapi=1" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        let selections = { 1: '', 2: '' };
+
+        function startExperience() {
+            // Tenta dar play na música (Alguns browsers bloqueiam auto-play sem interação)
+            const player = document.getElementById('youtube-player');
+            player.src += "&autoplay=1";
+            
+            nextScreen(2);
+        }
+
+        function nextScreen(num) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+            document.getElementById('screen' + num).classList.remove('hidden');
+            
+            if(num === 4) {
+                document.getElementById('res1').innerText = selections[1];
+                document.getElementById('res2').innerText = selections[2];
+            }
+        }
+
+        function selectOption(clause, value) {
+            selections[clause] = value;
+            // Efeito visual de seleção
+            const cards = event.target.parentElement.querySelectorAll('.clause-card');
+            cards.forEach(c => c.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+
+        function downloadTicket() {
+            html2canvas(document.querySelector("#ticket")).then(canvas => {
+                let link = document.createElement('a');
+                link.download = 'nossa-renovacao-5anos.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
