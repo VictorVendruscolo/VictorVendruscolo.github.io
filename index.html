@@ -22,157 +22,207 @@
             overflow-x: hidden;
         }
 
-        /* Container de Música (Escondido) */
-        #music-container { display: none; }
-
-        /* Telas */
         .screen {
             min-height: 100vh;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             padding: 20px; text-align: center;
             transition: opacity 0.5s ease;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .hidden { display: none; }
+        .hidden { display: none !important; }
 
-        /* Tipografia */
         h1, h2 { font-family: 'Cinzel', serif; color: var(--vinho); }
-        .formal-text { font-size: 0.9em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .formal-text { font-size: 0.9em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; color: #777; }
+        
+        /* Estilo da Cláusula */
+        .clausula-box {
+            background: white; border-left: 4px solid var(--dourado);
+            padding: 25px; margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: left;
+            line-height: 1.6;
+        }
 
-        /* Botões */
         .btn-formal {
             background: var(--vinho); color: white;
-            padding: 15px 30px; border: none;
-            font-family: 'Cinzel', serif; cursor: pointer;
-            transition: 0.3s; border-radius: 2px;
-            margin-top: 20px;
+            padding: 15px 35px; border: none;
+            font-family: 'Cinzel', serif; font-size: 1.1em;
+            cursor: pointer; transition: 0.3s; border-radius: 3px;
+            margin-top: 20px; width: 100%; max-width: 300px;
         }
-        .btn-formal:hover { background: var(--dourado); }
-
-        /* Cláusulas */
-        .clause-card {
-            background: white; border: 1px solid #ddd;
-            padding: 20px; margin: 10px; width: 100%; max-width: 400px;
-            cursor: pointer; transition: 0.3s;
-        }
-        .clause-card.selected { border: 2px solid var(--dourado); background: #fffdf5; }
+        .btn-formal:hover { background: var(--dourado); transform: scale(1.02); }
 
         /* Estilo do Ticket Final */
         #ticket {
-            background: white; width: 350px; padding: 0;
+            background: white; width: 100%; max-width: 380px; padding: 0;
             border: 2px solid var(--vinho); position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
         }
-        .ticket-header { background: var(--vinho); color: white; padding: 15px; }
-        .ticket-body { padding: 20px; text-align: left; border-bottom: 2px dashed #ccc; }
-        .ticket-footer { padding: 15px; font-family: 'Cinzel'; font-size: 0.8em; }
+        .ticket-header { background: var(--vinho); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center;}
+        .ticket-body { padding: 25px; text-align: left; border-bottom: 2px dashed #ccc; }
+        .ticket-footer { padding: 15px; font-family: 'Cinzel'; font-size: 0.85em; text-align: center; background: #f9f9f9;}
+        
         .photo-placeholder {
-            width: 100px; height: 100px; border-radius: 50%;
-            background: #eee; margin: 0 auto 15px;
-            background-image: url('foto.jpeg'); /* Substitua aqui */
+            width: 120px; height: 120px; border-radius: 50%;
+            border: 3px solid var(--dourado);
+            background-color: #eee; margin: 0 auto 20px;
+            /* AQUI ESTÁ A REFERÊNCIA DA FOTO */
+            background-image: url('./foto.jpeg'); 
             background-size: cover;
+            background-position: center;
         }
+        
+        .carimbo {
+            position: absolute; bottom: 80px; right: 20px;
+            color: var(--dourado); border: 2px solid var(--dourado);
+            padding: 5px 10px; font-family: 'Cinzel', serif;
+            font-weight: bold; font-size: 1.2em;
+            transform: rotate(-15deg); opacity: 0.8;
+        }
+
+        #youtube-player-container { display: none; }
     </style>
 </head>
 <body>
 
+    <!-- CONTAINER INVISÍVEL DO YOUTUBE -->
+    <div id="youtube-player-container"></div>
+
+    <!-- TELA 1: ABERTURA -->
     <section id="screen1" class="screen">
-        <p class="formal-text">Comarca de Dourados - MS / Campo Grande - MS</p>
+        <p class="formal-text">Comarca de Relacionamentos - MS</p>
         <h1>Autos n.º 13052021-2026</h1>
-        <p>Ação de Renovação de Afeto e Companheirismo</p>
+        <p>Ação de Renovação de Vínculo, Afeto e Parceria</p>
+        <p style="font-size: 0.9em; color: #666; margin-top: 30px;">
+            A requerente é intimada a analisar e aceitar os termos estabelecidos para a emissão do certificado de embarque para o próximo quinquênio.
+        </p>
         <button class="btn-formal" onclick="startExperience()">Abrir Processo</button>
     </section>
 
+    <!-- TELA 2: CLÁUSULA 1 -->
     <section id="screen2" class="screen hidden">
-        <h2>Cláusula I: Logística e Expansão</h2>
-        <p>Como vamos carimbar nosso passaporte nos próximos anos?</p>
-        <div class="clause-card" onclick="selectOption(1, 'Santa Catarina & Praia')">
-            <strong>Pé na areia:</strong> Priorizar o sal do mar e o descanso em SC.
+        <h2>Cláusula I: Logística e Desbravamento</h2>
+        <div class="clausula-box">
+            <p>A requerente compromete-se a manter a constância nas viagens e a aproveitar cada momento juntos, seja nas rotas já conhecidas entre Dourados e Campo Grande, seja descobrindo novos horizontes.</p>
         </div>
-        <div class="clause-card" onclick="selectOption(1, 'Novas Estradas de Moto')">
-            <strong>Vento no Rosto:</strong> Explorar novas rotas e destinos surpresas.
-        </div>
-        <button class="btn-formal" onclick="nextScreen(3)">Próxima Cláusula</button>
+        <button class="btn-formal" onclick="nextScreen(3)">Li e Aceito</button>
     </section>
 
+    <!-- TELA 3: CLÁUSULA 2 -->
     <section id="screen3" class="screen hidden">
-        <h2>Cláusula II: Do Cotidiano</h2>
-        <p>Quais aditivos não podem faltar na nossa rotina?</p>
-        <div class="clause-card" onclick="selectOption(2, 'Churrasco & Café')">
-            <strong>Gastronomia:</strong> Reação de Maillard e grãos selecionados.
+        <h2>Cláusula II: Do Foro Gastronômico</h2>
+        <div class="clausula-box">
+            <p>Fica estabelecido o dever de manter e aprimorar os rolês gastronômicos oficiais da união. Incluem-se nesta cláusula a busca incessante por novos cafés, a apreciação de boas pizzas e a obrigatoriedade moral do churrasco perfeito.</p>
         </div>
-        <div class="clause-card" onclick="selectOption(2, 'Podcasts de WhatsApp')">
-            <strong>Comunicação:</strong> Áudios de 10 min e podcasts exclusivos.
-        </div>
-        <div class="clause-card" onclick="selectOption(2, 'Humor e Noites Caseiras')">
-            <strong>Aconchego:</strong> Humor duvidoso e filmes até dormir.
-        </div>
-        <button class="btn-formal" onclick="nextScreen(4)">Finalizar Veredito</button>
+        <button class="btn-formal" onclick="nextScreen(4)">Li e Aceito</button>
     </section>
 
+    <!-- TELA 4: CLÁUSULA 3 -->
     <section id="screen4" class="screen hidden">
+        <h2>Cláusula III: Do Cotidiano e Aconchego</h2>
+        <div class="clausula-box">
+            <p>Fica acordada a preservação inegociável do nosso microcosmo particular: a emissão frequente de podcasts no WhatsApp para relatar o dia, a manutenção do nosso humor duvidoso e a sagrada tranquilidade das nossas noites caseiras.</p>
+        </div>
+        <button class="btn-formal" onclick="nextScreen(5)">Li e Aceito</button>
+    </section>
+
+    <!-- TELA 5: CLÁUSULA 4 -->
+    <section id="screen5" class="screen hidden">
+        <h2>Cláusula IV: Do Futuro e Sacramento</h2>
+        <div class="clausula-box">
+            <p>Por fim, as partes reafirmam o compromisso de cultivar a base sólida construída nestes 5 anos. Que a nossa jornada seja sempre guiada pela intercessão de São José, alimentando a esperança para a futura vocação ao casamento.</p>
+        </div>
+        <button class="btn-formal" onclick="nextScreen(6)">Assinar e Emitir Bilhete</button>
+    </section>
+
+    <!-- TELA 6: TICKET FINAL -->
+    <section id="screen6" class="screen hidden">
         <div id="ticket">
             <div class="ticket-header">
-                <div style="font-size: 0.7em;">BOARDING PASS / RENOVAÇÃO</div>
-                <div style="font-size: 1.2em;">PASSAGEIRA: MARIA EDUARDA</div>
+                <div>
+                    <div style="font-size: 0.7em; letter-spacing: 1px;">BOARDING PASS</div>
+                    <div style="font-size: 1.2em; font-weight: bold;">RENOVAÇÃO VITALÍCIA</div>
+                </div>
+                <div style="font-size: 1.5em;">✈️</div>
             </div>
             <div class="ticket-body">
                 <div class="photo-placeholder"></div>
-                <p><strong>DE:</strong> DOURADOS/MS (2021)</p>
-                <p><strong>PARA:</strong> PARA SEMPRE (2026+)</p>
-                <p><strong>DESTINO:</strong> <span id="res1">-</span></p>
-                <p><strong>ESTILO DE VIDA:</strong> <span id="res2">-</span></p>
-                <p><strong>INTERCESSÃO:</strong> SÃO JOSÉ</p>
-                <p style="font-style: italic; font-size: 0.8em; margin-top: 10px;">
-                    "Sentença: Renovada por tempo indeterminado com esperança no sacramento."
-                </p>
+                <p class="formal-text" style="margin:0;">PASSAGEIRA PRINCIPAL</p>
+                <p style="font-size: 1.2em; margin-top: 5px; font-weight: bold; color: var(--vinho);">MARIA EDUARDA</p>
+                
+                <p><strong>DE:</strong> 13/05/2021 (O Início)</p>
+                <p><strong>PARA:</strong> O Casamento & Além</p>
+                
+                <div style="background: #f1f1f1; padding: 10px; margin-top: 15px; border-radius: 4px; font-size: 0.85em;">
+                    <strong>TERMOS ACEITOS:</strong>
+                    <ul style="margin: 5px 0 0 15px; padding: 0;">
+                        <li>Viagens e Parceria Contínua</li>
+                        <li>Churrasco, Pizza & Café</li>
+                        <li>Podcasts via WhatsApp</li>
+                        <li>Intercessão de São José</li>
+                    </ul>
+                </div>
+                <div class="carimbo">DEFERIDO</div>
             </div>
             <div class="ticket-footer">
-                V.R.V & M.E.B.C - 5 ANOS
+                EMITIDO POR: V.R.V | DATA: 13 MAI 2026
             </div>
         </div>
-        <button class="btn-formal" onclick="downloadTicket()">Salvar Recordação</button>
-        <p style="font-size: 0.7em; margin-top: 15px;">Ao som de: Linha do Equador - Djavan</p>
+        <button class="btn-formal" onclick="downloadTicket()">Baixar Certificado</button>
     </section>
 
-    <div id="music-container">
-        <iframe id="youtube-player" width="1" height="1" src="https://www.youtube.com/embed/gAnS9u_S65M?enablejsapi=1" frameborder="0"></iframe>
-    </div>
-
+    <!-- SCRIPTS MÚSICA E LÓGICA -->
     <script>
-        let selections = { 1: '', 2: '' };
+        // 1. Lógica da API do YouTube para garantir a música tocando
+        let player;
+        // O navegador chama essa função automaticamente quando a API do YouTube carrega
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player-container', {
+                height: '0',
+                width: '0',
+                videoId: 'gAnS9u_S65M', // ID do vídeo: Linha do Equador - Djavan
+                playerVars: {
+                    'autoplay': 0, // Inicia pausado, o navegador bloqueia autoplay sem clique
+                    'controls': 0,
+                    'loop': 1,
+                    'playlist': 'gAnS9u_S65M' // Necessário para o loop funcionar
+                }
+            });
+        }
 
+        // Injeta o script da API do YouTube
+        let tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        let firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+        // 2. Lógica de Navegação das Telas
         function startExperience() {
-            // Tenta dar play na música (Alguns browsers bloqueiam auto-play sem interação)
-            const player = document.getElementById('youtube-player');
-            player.src += "&autoplay=1";
-            
+            // No momento do primeiro clique, damos o play na música
+            if (player && typeof player.playVideo === 'function') {
+                player.playVideo();
+            }
             nextScreen(2);
         }
 
         function nextScreen(num) {
+            // Esconde todas as telas
             document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+            // Mostra a tela alvo
             document.getElementById('screen' + num).classList.remove('hidden');
-            
-            if(num === 4) {
-                document.getElementById('res1').innerText = selections[1];
-                document.getElementById('res2').innerText = selections[2];
-            }
         }
 
-        function selectOption(clause, value) {
-            selections[clause] = value;
-            // Efeito visual de seleção
-            const cards = event.target.parentElement.querySelectorAll('.clause-card');
-            cards.forEach(c => c.classList.remove('selected'));
-            event.target.classList.add('selected');
-        }
-
+        // 3. Lógica para Baixar o Ticket
         function downloadTicket() {
-            html2canvas(document.querySelector("#ticket")).then(canvas => {
+            // Remove o border-radius para evitar bugs no html2canvas e melhora a escala para qualidade HD
+            html2canvas(document.querySelector("#ticket"), { scale: 2 }).then(canvas => {
                 let link = document.createElement('a');
-                link.download = 'nossa-renovacao-5anos.png';
+                link.download = 'nossa-renovacao-1305.png';
                 link.href = canvas.toDataURL();
                 link.click();
             });
